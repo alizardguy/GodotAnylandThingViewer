@@ -41,6 +41,7 @@ func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a 
 				var color: Array = ps.get("c");
 				new_state.color = Color(color[0], color[1], color[2]);
 				
+				
 				part.states.append(new_state);
 			
 			thing.parts.append(part); # add to part list

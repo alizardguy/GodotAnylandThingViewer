@@ -2,8 +2,12 @@ class_name AnylandVisualBuilder
 extends Node
 
 func _ready() -> void:
+	get_window().files_dropped.connect(_on_file_dropped);
+
+func _on_file_dropped(files: PackedStringArray):
+	print(files[0])
 	
-	var file: FileAccess = FileAccess.open("res://assets/test/idk.json", FileAccess.READ);
+	var file: FileAccess = FileAccess.open(files[0], FileAccess.READ);
 	var content = file.get_as_text();
 	
 	var parse = JSON.parse_string(content);
