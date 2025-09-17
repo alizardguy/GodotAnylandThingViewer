@@ -48,6 +48,9 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 		
 		var visual_instance: MeshInstance3D = MeshInstance3D.new();
 		
+		if part.base_shape_type == -1:
+			print("Invalid part id");
+		
 		visual_instance.mesh = load ("res://assets/mesh/base_shapes/" + str(part.base_shape_type) + ".obj")
 		thing_object.add_child(visual_instance);
 		
