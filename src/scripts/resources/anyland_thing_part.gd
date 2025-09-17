@@ -8,4 +8,6 @@ extends Resource
 @export var attributes: Array[int]; ## Thing part attributes
 @export var unique_part_id: String; ## Optional unique part identifier
 
+
+
 @export var states: Array[ThingStateResource]; ## States of the Thing
