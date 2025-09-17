@@ -10,7 +10,8 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_elqb8")
 
 [sub_resource type="Environment" id="Environment_0bbpv"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.39215687, 0.4392157, 0.6117647, 1)
 sky = SubResource("Sky_rvslj")
 tonemap_mode = 2
 
@@ -28,4 +29,5 @@ script = ExtResource("1_elqb8")
 metadata/_custom_type_script = "uid://bt2l3mywlk347"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.8922567)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -3)
+fov = 90.0

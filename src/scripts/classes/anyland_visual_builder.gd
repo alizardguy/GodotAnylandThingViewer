@@ -3,7 +3,7 @@ extends Node
 
 func _ready() -> void:
 	
-	var file: FileAccess = FileAccess.open("res://assets/test/huntress-body-2022-08-04-22-40-27.json", FileAccess.READ);
+	var file: FileAccess = FileAccess.open("res://assets/test/idk.json", FileAccess.READ);
 	var content = file.get_as_text();
 	
 	var parse = JSON.parse_string(content);
@@ -38,11 +38,27 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 		visual_instance.scale = part.states[0].scale;
 		visual_instance.rotation = part.states[0].rotation;
 		
-		var material: StandardMaterial3D = StandardMaterial3D.new();
-		material.albedo_color = part.states[0].color;
-		visual_instance.material_override = material;
+		var existing_material: bool = false;
+		var holdout_material: StandardMaterial3D;
 		
 		
+		if thing_object.thing_materials.is_empty() == false:
+			for m in thing_object.thing_materials:
+				if m.albedo_color == part.states[0].color:
+					if part.states.size() > 1:
+						continue
+					
+					existing_material = true;
+					holdout_material = m;
+					break;
+		
+		if existing_material:
+			visual_instance.material_override = holdout_material;
+		else:
+			var material: StandardMaterial3D = StandardMaterial3D.new();
+			material.albedo_color = part.states[0].color;
+			visual_instance.material_override = material;
+			thing_object.thing_materials.append(material);
 		
 	
 	return thing_object;
