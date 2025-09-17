@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Anyland Thing Viewer"
+run/main_scene="uid://c0l4twx31usr4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/images/icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fancy_folder_colors/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -27,7 +28,8 @@ folder_colors={
 "res://scenes/": "yellow",
 "res://scripts/": "blue",
 "res://scripts/autorun/": "teal",
-"res://scripts/classes/": "purple"
+"res://scripts/classes/": "purple",
+"res://scripts/resources/": "pink"
 }
 
 [rendering]

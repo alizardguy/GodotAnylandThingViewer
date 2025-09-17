@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AnylandThingResource" load_steps=3 format=3 uid="uid://c5u006kac5a2j"]
+
+[ext_resource type="Script" uid="uid://c3y42tja6d878" path="res://scripts/resources/anyland_thing_object.gd" id="1_pjone"]
+[ext_resource type="Script" uid="uid://fojr4qmbue0o" path="res://scripts/resources/anyland_thing_part.gd" id="1_rpex4"]
+
+[resource]
+script = ExtResource("1_pjone")
+metadata/_custom_type_script = "uid://c3y42tja6d878"
