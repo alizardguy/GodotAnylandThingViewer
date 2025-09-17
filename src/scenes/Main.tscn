@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0l4twx31usr4"]
 
-[ext_resource type="Script" uid="uid://6b165j6ph1om" path="res://scripts/classes/anyland_json2resource_builder.gd" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://bt2l3mywlk347" path="res://scripts/classes/anyland_visual_builder.gd" id="1_elqb8"]
 
 [node name="Main" type="Node"]
 
-[node name="AnylandJson2ResourceBuilder" type="Node" parent="."]
+[node name="AnylandVisualBuilder" type="Node" parent="."]
 script = ExtResource("1_elqb8")
-metadata/_custom_type_script = "uid://6b165j6ph1om"
+metadata/_custom_type_script = "uid://bt2l3mywlk347"
