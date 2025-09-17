@@ -2,9 +2,23 @@ class_name AnylandVisualBuilder
 extends Node
 
 func _ready() -> void:
-	get_window().files_dropped.connect(_on_file_dropped);
+	get_window().files_dropped.connect(_on_file_dropped); # debug
+	
+	var file: FileAccess = FileAccess.open("res://assets/test/idk.json", FileAccess.READ);
+	var content = file.get_as_text();
+	
+	var parse = JSON.parse_string(content);
+	
+	var resource_builder: AnylandJson2ResourceBuilder = AnylandJson2ResourceBuilder.new();
+	resource_builder.name = "ResourceBuilder";
+	self.add_child(resource_builder);
+	
+	var thing_resource = resource_builder.build_resource(parse);
+	var visual = build_visual(thing_resource);
+	
+	self.add_child(visual);
 
-func _on_file_dropped(files: PackedStringArray):
+func _on_file_dropped(files: PackedStringArray): # debug
 	print(files[0])
 	
 	var file: FileAccess = FileAccess.open(files[0], FileAccess.READ);
@@ -20,7 +34,6 @@ func _on_file_dropped(files: PackedStringArray):
 	var visual = build_visual(thing_resource);
 	
 	self.add_child(visual);
-
 
 
 func build_visual(thing_resource: AnylandThingResource) -> Node3D:
@@ -45,7 +58,6 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 		var existing_material: bool = false;
 		var holdout_material: StandardMaterial3D;
 		
-		
 		if thing_object.thing_materials.is_empty() == false:
 			for m in thing_object.thing_materials:
 				if m.albedo_color == part.states[0].color:
@@ -64,5 +76,45 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 			visual_instance.material_override = material;
 			thing_object.thing_materials.append(material);
 		
+		if !part.attributes.is_empty():
+			for at in part.attributes:
+				
+				if at == 32 or at == 33 or at == 34: # sideways, vertical, depth
+					reflect_philipp_style(visual_instance, part.attributes);
+		
+		#if !part.changed_verts.is_empty():
+		#	var mdt: MeshDataTool = MeshDataTool.new();
+		#		
+		#	mdt.create_from_surface(visual_instance.mesh, 0);
+		#	
+		#	for tweak in part.changed_verts:
+		#		print(mdt.get_vertex(int(tweak[3])))
+		#		mdt.set_vertex(int(tweak[3]), Vector3(mdt.get_vertex(tweak[3]) + Vector3(tweak[0], tweak[1], tweak[2])));
+		#		print(mdt.get_vertex(int(tweak[3])))
+		#		
+		#		mdt.commit_to_surface(visual_instance.mesh);
+		
 	
 	return thing_object;
+
+func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> MeshInstance3D:
+	var sideways: bool = false;
+	var vertical: bool = false;
+	var depth: bool = false;
+	
+	var new_part: MeshInstance3D;
+	new_part = source_part.duplicate();
+	
+	for a in attributes:
+		if a == 32:
+			sideways = true;
+		elif a == 33:
+			vertical = true;
+		elif a == 34:
+			depth = true;
+	
+	if sideways and !vertical and !depth:
+		#part.position = 
+		pass
+	
+	return new_part;

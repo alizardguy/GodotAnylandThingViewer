@@ -4,7 +4,7 @@ extends Node
 func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a resource from json
 	var thing: AnylandThingResource = AnylandThingResource.new();
 	
-	thing.name = thing_json.get("n", "Name Not Found")
+	thing.name = thing_json.get("n", "thing")
 	thing.description = thing_json.get("d", "");
 	
 	for a in thing_json.get("a", 0):
@@ -21,6 +21,10 @@ func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a 
 		if p.get("a") != null:
 			for pa in p.get("a"):
 				part.attributes.append(int(pa));
+		
+		if p.get("c") != null:
+			for tweak in p.get("c"):
+				part.changed_verts.append(tweak);
 		
 		# get part states
 		if p.get("s") != null:
