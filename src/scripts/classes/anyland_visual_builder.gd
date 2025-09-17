@@ -4,7 +4,7 @@ extends Node
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_file_dropped); # debug
 	
-	var file: FileAccess = FileAccess.open("res://assets/test/idk.json", FileAccess.READ);
+	var file: FileAccess = FileAccess.open("res://assets/test/huntress-body.json", FileAccess.READ);
 	var content = file.get_as_text();
 	
 	var parse = JSON.parse_string(content);
@@ -80,7 +80,7 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 			for at in part.attributes:
 				
 				if at == 32 or at == 33 or at == 34: # sideways, vertical, depth
-					reflect_philipp_style(visual_instance, part.attributes);
+					thing_object.add_child(reflect_philipp_style(visual_instance, part.attributes));
 		
 		#if !part.changed_verts.is_empty():
 		#	var mdt: MeshDataTool = MeshDataTool.new();
@@ -114,7 +114,27 @@ func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> Me
 			depth = true;
 	
 	if sideways and !vertical and !depth:
-		#part.position = 
-		pass
+		new_part.rotation = source_part.rotation * Vector3(1, -1, 1);
+		new_part.position = source_part.position * Vector3(-1, 1, 1);
+		
+	elif !sideways and vertical and !depth:
+		new_part.rotation = source_part.rotation + Vector3(0, deg_to_rad(180), 0);
+		new_part.position = source_part.position * Vector3(1, 1, -1);
+		
+	elif sideways and vertical and !depth:
+		new_part.rotation = source_part.rotation + Vector3(0, deg_to_rad(180), 0);
+		new_part.position = source_part.position * Vector3(1, 1, -1);
+		
+	elif sideways and !vertical and depth:
+		var quat = Quaternion.from_euler(source_part.rotation) * Quaternion(1, 1, 1, -1);
+		new_part.rotation = quat.get_euler();
+		new_part.position = source_part.position * Vector3(-1, 1, 1);
+	elif sideways and vertical and depth:
+		print("a")
+	elif !sideways and !vertical and depth:
+		new_part.rotation = source_part.rotation + Vector3(0, 0, 180);
+		new_part.position = source_part.position * Vector3(0, -1, 0);
+	elif !sideways and vertical and depth:
+		print("c")
 	
 	return new_part;
