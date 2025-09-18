@@ -108,7 +108,7 @@ func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> Me
 	var new_part: MeshInstance3D;
 	new_part = source_part.duplicate();
 	
-	new_part.name = "mirror " + source_part.name;
+	new_part.name = "mirror " + source_part.name + str(attributes);
 	
 	for a in attributes:
 		if a == 32:
@@ -118,28 +118,30 @@ func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> Me
 		elif a == 34:
 			depth = true;
 	
+	var source_rot: Quaternion = source_part.quaternion;
+	
 	if sideways and !vertical and !depth:
-		new_part.rotation = source_part.rotation * Vector3(1, -1, 1);
+		var new_rot: Quaternion = Quaternion(source_rot.x * -1, source_rot.y, source_rot.z, -source_rot.w);
+		new_part.basis = Basis(new_rot).scaled_local(source_part.scale);
 		new_part.position = source_part.position * Vector3(-1, 1, 1);
 		
 	elif !sideways and vertical and !depth:
-		new_part.rotation = source_part.rotation + Vector3(0, deg_to_rad(180), 0);
-		new_part.position = source_part.position * Vector3(1, 1, -1);
+		pass
 		
 	elif sideways and vertical and !depth:
-		new_part.rotation = source_part.rotation + Vector3(0, deg_to_rad(180), 0);
-		new_part.position = source_part.position * Vector3(1, 1, -1);
+		pass
 		
 	elif sideways and !vertical and depth:
-		var quat = Quaternion.from_euler(source_part.rotation) * Quaternion(1, 1, 1, -1);
-		new_part.rotation = quat.get_euler();
-		new_part.position = source_part.position * Vector3(-1, 1, 1);
+		pass
+		
 	elif sideways and vertical and depth:
-		print("a")
+		pass
+		
 	elif !sideways and !vertical and depth:
-		new_part.rotation = source_part.rotation + Vector3(0, 0, 180);
-		new_part.position = source_part.position * Vector3(0, -1, 0);
+		pass
+		
 	elif !sideways and vertical and depth:
-		print("c")
+		pass
+		
 	
 	return new_part;
