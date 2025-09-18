@@ -13,8 +13,10 @@ func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a 
 	for p in thing_json.get("p"):
 		var part: AnylandThingPartResource = AnylandThingPartResource.new();
 		
+		
 		# set basic part info
-		part.base_shape_type = p.get("b", -1);
+		part.base_shape_type = p.get("b", 1);
+		
 		part.material_type = p.get("t", -1);
 		
 		part.name = p.get("n", "part");
@@ -51,7 +53,6 @@ func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a 
 				part.states.append(new_state);
 			
 			thing.parts.append(part); # add to part list
-	
 	
 	
 	return thing;
