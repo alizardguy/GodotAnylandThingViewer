@@ -58,6 +58,7 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 		visual_instance.scale = part.states[0].scale;
 		visual_instance.rotation = part.states[0].rotation;
 		
+		
 		var existing_material: bool = false;
 		var holdout_material: StandardMaterial3D;
 		

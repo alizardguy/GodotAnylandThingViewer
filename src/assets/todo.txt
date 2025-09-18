@@ -1,3 +1,4 @@
 - Mirroring
 - Vertex editing
 - Import flow
+- Figure out why everything is mirrored

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0l4twx31usr4"]
+[gd_scene load_steps=9 format=3 uid="uid://c0l4twx31usr4"]
 
 [ext_resource type="Script" uid="uid://bt2l3mywlk347" path="res://scripts/classes/anyland_visual_builder.gd" id="1_elqb8"]
 [ext_resource type="ArrayMesh" uid="uid://byq62grr5fuvk" path="res://assets/test/mirrortest3.obj" id="2_rvslj"]
@@ -19,6 +19,13 @@ tonemap_mode = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvslj"]
 transparency = 1
 albedo_color = Color(1, 0.3372549, 1, 0.41960785)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rvslj"]
+size = Vector3(0.05, 0.05, 0.7)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rvslj"]
+radius = 0.1
+height = 0.01
 
 [node name="Main" type="Node"]
 
@@ -42,3 +49,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 visible = false
 material_override = SubResource("StandardMaterial3D_rvslj")
 mesh = ExtResource("2_rvslj")
+
+[node name="DebugGimzo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.35)
+mesh = SubResource("BoxMesh_rvslj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DebugGimzo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
+mesh = SubResource("SphereMesh_rvslj")
