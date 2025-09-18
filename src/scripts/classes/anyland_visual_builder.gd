@@ -126,18 +126,25 @@ func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> Me
 		new_part.position = source_part.position * Vector3(-1, 1, 1);
 		
 	elif !sideways and vertical and !depth:
-		pass
+		var new_rot: Quaternion = Quaternion(source_rot.x * -1, source_rot.y, source_rot.z, -source_rot.w * -1);
+		new_part.basis = Basis(new_rot).scaled_local(source_part.scale);
+		new_part.rotation = new_part.rotation + Vector3(0, deg_to_rad(180), 0);
+		new_part.position = source_part.position * Vector3(1, -1 , -1);
 		
 	elif sideways and vertical and !depth:
-		pass
+		new_part.position = source_part.position + Vector3(0, deg_to_rad(180), 0);
+		new_part.position = source_part.position * Vector3(1, 1, -1);
 		
 	elif sideways and !vertical and depth:
-		pass
+		var new_rot: Quaternion = Quaternion(source_rot.x, source_rot.y, source_rot.z * -1, -source_rot.w * -1);
+		new_part.basis = Basis(new_rot).scaled_local(source_part.scale);
+		new_part.position = source_part.position * Vector3(-1, -1, 1);
 		
 	elif sideways and vertical and depth:
 		var new_rot: Quaternion = Quaternion(source_rot.x * -1, source_rot.y * -1, source_rot.z * -1, -source_rot.w * -1);
 		new_part.basis = Basis(new_rot).scaled_local(source_part.scale);
 		new_part.rotation = new_part.rotation + Vector3(deg_to_rad(180), 0, 0);
+		new_part.position = source_part.position * Vector3(-1, -1 , -1);
 		
 	elif !sideways and !vertical and depth:
 		var new_rot: Quaternion = Quaternion(source_rot.x * -1, source_rot.y * -1, source_rot.z * -1, -source_rot.w * -1);
