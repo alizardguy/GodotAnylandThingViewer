@@ -37,7 +37,7 @@ func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a 
 				
 				# set pos
 				var pos: Array = ps.get("p");
-				new_state.position = Vector3(pos[0], pos[1], pos[2]);
+				new_state.position = Vector3(-pos[0], pos[1], pos[2]);
 				
 				var rot: Array = ps.get("r");
 				new_state.rotation = Vector3(deg_to_rad(rot[0]),deg_to_rad(rot[1]),deg_to_rad(rot[2]));
