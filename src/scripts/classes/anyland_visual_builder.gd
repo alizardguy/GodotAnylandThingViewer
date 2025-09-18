@@ -82,8 +82,12 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 		if !part.attributes.is_empty():
 			for at in part.attributes:
 				
-				if at == 32 or at == 33 or at == 34: # sideways, vertical, depth
-					thing_object.add_child(reflect_philipp_style(visual_instance, part.attributes));
+				if at == 32:
+					thing_object.add_child(reflect_philipp_style(visual_instance, 32));
+				if at == 33:
+					thing_object.add_child(reflect_philipp_style(visual_instance, 33));
+				if at == 34:
+					thing_object.add_child(reflect_philipp_style(visual_instance, 34));
 		
 		#if !part.changed_verts.is_empty():
 		#	var mdt: MeshDataTool = MeshDataTool.new();
@@ -100,7 +104,7 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 	
 	return thing_object;
 
-func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> MeshInstance3D:
+func reflect_philipp_style(source_part: MeshInstance3D, type: int) -> MeshInstance3D:
 	var sideways: bool = false;
 	var vertical: bool = false;
 	var depth: bool = false;
@@ -108,15 +112,14 @@ func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> Me
 	var new_part: MeshInstance3D;
 	new_part = source_part.duplicate();
 	
-	new_part.name = "mirror " + source_part.name + str(attributes);
+	new_part.name = "mirror " + source_part.name + str(type);
 	
-	for a in attributes:
-		if a == 32:
-			sideways = true;
-		elif a == 33:
-			vertical = true;
-		elif a == 34:
-			depth = true;
+	if type == 32:
+		sideways = true;
+	elif type == 33:
+		vertical = true;
+	elif type == 34:
+		depth = true;
 	
 	var source_rot: Quaternion = source_part.quaternion;
 	

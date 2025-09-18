@@ -1,0 +1,10 @@
+newmtl 255_255_255_ (Instance)
+Kd 1 1 1
+illum 2
+
+newmtl InnerGlowHighlight
+Kd 0.6650944 0.9152138 1
+Tr 0.8862745
+d 0.1137255
+illum 2
+
