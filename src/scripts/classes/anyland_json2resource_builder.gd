@@ -17,6 +17,8 @@ func build_resource(thing_json: Dictionary) -> AnylandThingResource: ## Build a 
 		part.base_shape_type = p.get("b", -1);
 		part.material_type = p.get("t", -1);
 		
+		part.name = p.get("n", "part");
+		
 		# get part attributes
 		if p.get("a") != null:
 			for pa in p.get("a"):

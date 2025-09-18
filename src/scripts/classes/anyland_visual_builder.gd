@@ -108,6 +108,8 @@ func reflect_philipp_style(source_part: MeshInstance3D, attributes: Array) -> Me
 	var new_part: MeshInstance3D;
 	new_part = source_part.duplicate();
 	
+	new_part.name = "mirror " + source_part.name;
+	
 	for a in attributes:
 		if a == 32:
 			sideways = true;
