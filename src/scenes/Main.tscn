@@ -39,5 +39,6 @@ metadata/_custom_type_script = "uid://bt2l3mywlk347"
 
 [node name="Mirrortest3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_rvslj")
 mesh = ExtResource("2_rvslj")
