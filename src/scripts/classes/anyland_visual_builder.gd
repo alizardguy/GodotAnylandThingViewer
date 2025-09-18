@@ -4,19 +4,19 @@ extends Node
 func _ready() -> void:
 	get_window().files_dropped.connect(_on_file_dropped); # debug
 	
-	var file: FileAccess = FileAccess.open("res://assets/test/huntress-body.json", FileAccess.READ);
-	var content = file.get_as_text();
+	#var file: FileAccess = FileAccess.open("res://assets/test/huntress-body.json", FileAccess.READ);
+	#var content = file.get_as_text();
 	
-	var parse = JSON.parse_string(content);
+	#var parse = JSON.parse_string(content);
 	
-	var resource_builder: AnylandJson2ResourceBuilder = AnylandJson2ResourceBuilder.new();
-	resource_builder.name = "ResourceBuilder";
-	self.add_child(resource_builder);
+	#var resource_builder: AnylandJson2ResourceBuilder = AnylandJson2ResourceBuilder.new();
+	#resource_builder.name = "ResourceBuilder";
+	#self.add_child(resource_builder);
 	
-	var thing_resource = resource_builder.build_resource(parse);
-	var visual = build_visual(thing_resource);
+	#var thing_resource = resource_builder.build_resource(parse);
+	#var visual = build_visual(thing_resource);
 	
-	self.add_child(visual);
+	#self.add_child(visual);
 
 func _on_file_dropped(files: PackedStringArray): # debug
 	print(files[0])
@@ -42,7 +42,7 @@ func build_visual(thing_resource: AnylandThingResource) -> Node3D:
 	thing_object.thing_data = thing_resource;
 	thing_object.name = thing_resource.name;
 	
-	thing_object.rotation = Vector3(0,0,deg_to_rad(90))
+	#thing_object.rotation = Vector3(0,0,deg_to_rad(90))
 	
 	for part in thing_resource.parts:
 		
