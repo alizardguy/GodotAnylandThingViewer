@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dqb4x2fj838sq"
+path="res://.godot/imported/zardborg-head-2025-09-21-04-13-57.obj-08ae66eb350c44836f5d92894558f4cb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/zardborg-head-2025-09-21-04-13-57.obj-08ae66eb350c44836f5d92894558f4cb.mesh"]
+
+source_file="res://assets/test/zardborg-head-2025-09-21-04-13-57.obj"
+dest_files=["res://.godot/imported/zardborg-head-2025-09-21-04-13-57.obj-08ae66eb350c44836f5d92894558f4cb.mesh", "res://.godot/imported/zardborg-head-2025-09-21-04-13-57.obj-08ae66eb350c44836f5d92894558f4cb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
